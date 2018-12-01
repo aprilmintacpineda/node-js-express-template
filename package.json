@@ -1,0 +1,56 @@
+{
+  "name": "multiple-builds-with-webpack",
+  "version": "1.0.0",
+  "description": "This repository serves as a template when using [NodeJS](https://nodejs.org/en/) and [ExpressJS](https://expressjs.com/). Development and production ready.",
+  "main": "index.js",
+  "babel": {
+    "comments": false,
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": true
+          }
+        }
+      ],
+      "@babel/preset-flow",
+      "minify"
+    ]
+  },
+  "scripts": {
+    "reinstallNodeModules": "rm -rf node_modules package-lock.json && npm i",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf build && babel src --out-dir build && npm run filesizes",
+    "compile": "rm -rf build && babel src --out-dir build --watch",
+    "serve": "nodemon build/index.js",
+    "filesizes": "node webpack/filesizes.js",
+    "eslint": "eslint \"src/**/*.js\" --fix",
+    "prettier": "prettier \"src/**/*.{js,scss}\" --write",
+    "lint": "npm run prettier && npm run eslint"
+  },
+  "author": "April Mintac Pineda",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-flow": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.4",
+    "babel-preset-minify": "^0.5.0",
+    "chalk": "^2.4.1",
+    "dotenv": "^6.1.0",
+    "eslint": "^5.9.0",
+    "gzip-size": "^5.0.0",
+    "nodemon": "^1.18.7",
+    "prettier": "^1.15.2",
+    "prettier-stylelint": "^0.4.2"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "mysql": "^2.16.0"
+  }
+}
